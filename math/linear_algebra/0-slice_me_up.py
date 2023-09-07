@@ -4,8 +4,12 @@
 This script slices and displays specific parts of an array.
 """
 
+# Define the array
 arr = [9, 8, 2, 3, 9, 4, 1, 0, 3]
-arr1 = arr[:2]  # Extract the first two numbers of the array
-arr2 = arr[-5:]  # Extract the last five numbers of the array
-arr3 = arr[1:6]  # Extract the 2nd through 6th numbers of the array
+
+# Slice the array to get the required parts and print the results
+print("The first two numbers of the array are: {}".format(arr[:2]))
+print("The last five numbers of the array are: {}".format(arr[-5:]))
+print("The 2nd through 6th numbers of the array are: {}".format(arr[1:6]))
+
 
