@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 def add_arrays(arr1, arr2):
-   
     if len(arr1) != len(arr2):
         return None
     result = []
@@ -9,6 +8,7 @@ def add_arrays(arr1, arr2):
         result.append(arr1[i] + arr2[i])
 
     return result
+
 
 if __name__ == "__main__":
     arr1 = [1, 2, 3, 4]
