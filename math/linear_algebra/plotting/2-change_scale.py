@@ -8,4 +8,7 @@ r = np.(0.5)
 t = 5730
 y = np.exp((r / t) * x)
 plt.semilogy(x, y color='b', label='C-14')
+plt.xlabel('Time (years)')
+plt.ylabel('Fraction Remaining')
+plt.title('Exponential Decay of C-14')
 plt.show
