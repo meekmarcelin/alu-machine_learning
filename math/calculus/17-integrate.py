@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+""" integration """
+
+
 def poly_integral(poly, C=0):
     # Check if poly is a list and C is an integer
     if not isinstance(poly, list) or not all(isinstance(coeff, (int, float)) for coeff in poly) or not isinstance(C, int):
