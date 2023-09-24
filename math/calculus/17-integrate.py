@@ -1,19 +1,24 @@
 #!/usr/bin/env python3
-""" integration """
+"""Derivative of a polynomial"""
 
 
 def poly_integral(poly, C=0):
-    # Check if poly is a list and C is an integer
-    if not isinstance(poly, list) or not all(isinstance(coeff, (int, float)) for coeff in poly) or not isinstance(C, int):
+    """Calculates the integral of a polynomial"""
+    integral = []
+    # check for the validity of the inputs
+    if not isinstance(poly, list) or len(poly) == 0 or not isinstance(C, int):
         return None
+    # calculate the cofficients
+    for i in range(len(poly)-1, 0, -1):
+        integral.append(poly[i]/(i+1))
 
-    # Initialize the result list with C
-    result = [C]
+    integral.append(poly[0])
+    integral.append(C)
+    # fit the output like on the intranet
+    if len(poly) == 1 and poly[0] == 0:
+        integral = [C]
+    for i in range(len(integral)):
+        if integral[i] % 1 == 0:
+            integral[i] = int(integral[i])
 
-    # Iterate through the coefficients of poly
-    for i, coeff in enumerate(poly):
-        # Calculate the integral of the term and append to result
-        integral_coeff = coeff / (i + 1)
-        result.append(integral_coeff)
-
-    return result
+    return integral[::-1]
