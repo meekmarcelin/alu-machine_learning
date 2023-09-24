@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Derivative of"""
+"""Derivative """
 
 
 def poly_derivative(poly):
