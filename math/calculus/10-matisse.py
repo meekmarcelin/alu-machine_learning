@@ -14,4 +14,3 @@ def poly_derivative(poly):
 
         derivative.append(poly[i]*i)
     return derivative[::-1]
-    
