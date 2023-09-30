@@ -4,6 +4,7 @@
 π = 3.1415926536
 e = 2.7182818285
 
+
 class Exponential:
     """
     Class to represent an exponential distribution.
