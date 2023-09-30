@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 # Mathematical Approximations
+from poisson import Poisson
 π = 3.1415926536
 e = 2.7182818285
 
