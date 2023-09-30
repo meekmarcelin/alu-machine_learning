@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
+""" Mathematical Approximations """
 
-# Mathematical Approximations
+
 π = 3.1415926536
 e = 2.7182818285
 
 class Poisson:
+
+    
     """
     Poisson class represents a Poisson distribution.
     """
