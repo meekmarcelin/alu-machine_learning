@@ -22,10 +22,10 @@ class Poisson:
                 raise ValueError("data must contain multiple values")
             self.lambtha = float(sum(data) / len(data))
 
+
 if __name__ == "__main__":
 
 
-    # Sample code
     data = [4, 3, 6, 8, 2]
     p1 = Poisson(data)
     print('Lambtha:', p1.lambtha)
