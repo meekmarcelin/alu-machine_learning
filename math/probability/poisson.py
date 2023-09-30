@@ -4,6 +4,8 @@
 π = 3.1415926536
 e = 2.7182818285
 
+import math  # Import the math module
+
 class Poisson:
     """
     Class to represent a Poisson distribution.
@@ -53,7 +55,6 @@ class Poisson:
             return 0
 
         # Calculate the Poisson PMF value for k
-        import math
         pmf_value = (self.lambtha ** k) * (math.exp(-self.lambtha) / math.factorial(k))
         return pmf_value
 
