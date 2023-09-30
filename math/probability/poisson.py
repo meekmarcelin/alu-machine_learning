@@ -25,7 +25,6 @@ class Poisson:
 
 if __name__ == "__main__":
 
-
     data = [4, 3, 6, 8, 2]
     p1 = Poisson(data)
     print('Lambtha:', p1.lambtha)
