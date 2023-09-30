@@ -25,7 +25,13 @@ class Poisson:
         if k < 0 or not isinstance(k, int):
             return 0
 
-        # Calculate the Poisson PMF value for k
-        import math
-        pmf_value = (self.lambtha ** k) * (math.exp(-self.lambtha) / math.factorial(k))
-        return pmf_value
+        from poisson import Poisson  # Corrected import statement
+import numpy as np
+
+np.random.seed(0)
+data = np.random.poisson(5., 100).tolist()
+p1 = Poisson(data)
+print('P(9):', p1.pmf(9))
+
+p2 = Poisson(lambtha=5)
+print('P(9):', p2.pmf(9))
