@@ -7,11 +7,10 @@ e = 2.7182818285
 
 class Poisson:
 
-    
+
     """
     Poisson class represents a Poisson distribution.
     """
-
     def __init__(self, data=None, lambtha=1.):
         if data is None:
             if lambtha <= 0:
