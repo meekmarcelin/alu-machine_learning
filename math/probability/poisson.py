@@ -35,7 +35,6 @@ class Poisson:
             self.lambtha = float(sum(data) / len(data))
 
 if __name__ == "__main__":
-    import numpy as np
 
     np.random.seed(0)
     data = np.random.poisson(5., 100).tolist()
