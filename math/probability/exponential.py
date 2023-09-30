@@ -34,14 +34,3 @@ class Exponential:
             if lambtha <= 0:
                 raise ValueError("lambtha must be a positive value")
             self.lambtha = float(lambtha)
-
-# Test the Exponential class
-if __name__ == "__main__":
-    import numpy as np
-    np.random.seed(0)
-    data = np.random.exponential(0.5, 100).tolist()
-    e1 = Exponential(data)
-    print('Lambtha:', e1.lambtha)
-
-    e2 = Exponential(lambtha=2)
-    print('Lambtha:', e2.lambtha)
