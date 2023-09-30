@@ -5,9 +5,8 @@
 π = 3.1415926536
 e = 2.7182818285
 
+
 class Poisson:
-
-
     """
     Poisson class represents a Poisson distribution.
     """
@@ -24,6 +23,8 @@ class Poisson:
             self.lambtha = float(sum(data) / len(data))
 
 if __name__ == "__main__":
+
+
     # Sample code
     data = [4, 3, 6, 8, 2]
     p1 = Poisson(data)
