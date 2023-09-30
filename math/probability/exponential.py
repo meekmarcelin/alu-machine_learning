@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+"""Exponential distribution class."""
+
+
 def __init__(self, data=None, lambtha=1.):
     """
     Initialize an Exponential distribution.
