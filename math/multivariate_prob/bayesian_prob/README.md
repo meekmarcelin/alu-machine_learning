@@ -1,1 +1,1 @@
-bayesian probabilit
+Boyes' probability
