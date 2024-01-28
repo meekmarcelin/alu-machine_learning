@@ -8,7 +8,7 @@ def create_layer(prev, n, activation):
     Creates a layer for a neural network.
 
     """
-    #initializer
+    # initializer
     initializer = tf.contrib.layers.variance_scaling_initializer(
         mode="FAN_AVG")
 
