@@ -1,1 +1,1 @@
-regulations
+regulations  for data science
