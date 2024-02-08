@@ -3,6 +3,16 @@
 
 
 def moving_average(data, beta):
+    """
+    Calculates the weighted moving average of a dataset.
+
+    Args:
+    data: List of data points to calculate the moving average of.
+    beta: Weight used for the moving average.
+
+    Returns:
+    List containing the moving averages of the input data.
+    """
     # Initialize variables
     moving_avg = []
     v_hat = 0
