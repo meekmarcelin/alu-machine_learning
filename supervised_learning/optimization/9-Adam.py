@@ -17,9 +17,6 @@ def update_variables_Adam(alpha, beta1, beta2, epsilon, var, grad, v, s, t):
     v: Numpy array containing the previous first moment of var.
     s: Numpy array containing the previous second moment of var.
     t: Time step used for bias correction.
-
-    Returns:
-    Tuple containing the updated variable, the new first moment, and the new second moment, respectively.
     """
     v = (beta1 * v) + (1 - beta1) * grad
     v_c = v / (1 - (beta1 ** t))
