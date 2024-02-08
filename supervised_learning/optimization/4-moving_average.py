@@ -1,16 +1,25 @@
 #!/usr/bin/env python3
 """Moving average"""
 
-
 def moving_average(data, beta):
-    """Calculates the weighted moving average of a data set"""
-    weighted_data = list()
-    epsilon = 1 - beta
-    V = 0
+    """
+    Calculates the weighted moving average of a dataset.
 
-    for i, theta in enumerate(data, start=1):
-        bias_correction = 1 - (beta ** i)
-        V = (beta * V) + (epsilon * theta)
-        weighted_data.append(V / bias_correction)
+    Args:
+    data: List of data points to calculate the moving average of.
+    beta: Weight used for the moving average.
 
-    return weighted_data
+    Returns:
+    List containing the moving averages of the input data.
+    """
+    # Initialize variables
+    moving_avg = []
+    v_hat = 0
+    
+    # Calculate moving averages
+    for i in range(len(data)):
+        v_hat = beta * v_hat + (1 - beta) * data[i]
+        bias_correction = 1 - beta ** (i + 1)
+        moving_avg.append(v_hat / bias_correction)
+    
+    return moving_avg
