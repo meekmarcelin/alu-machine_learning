@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """ constant normalization """
+import numpy as np
 
 
 def normalize_constants(x):
