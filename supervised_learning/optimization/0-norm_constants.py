@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""optimization"""
+"""Normalization """
 import numpy as np
 
 
-def normalize_constants(X):
-    """ Return mean and standard deviation """
-     X_ref = X.copy()
+def normalization_constants(X):
+    """Returns mean and standard deviation of input data"""
+    X_ref = X.copy()
     m, nx = X_ref.shape
     mean = (1 / m) * X_ref.sum(axis=0)
     X_ref -= mean
