@@ -2,6 +2,7 @@
 """optimization"""
 import numpy as np
 
+
 def normalize_constants(X):
     """ Return mean and standard deviation """
     mean = np.mean(X, axis=0)
