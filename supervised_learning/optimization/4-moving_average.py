@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Moving average"""
 
-
 def moving_average(data, beta):
     """
     Calculates the weighted moving average of a dataset.
