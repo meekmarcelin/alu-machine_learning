@@ -4,16 +4,13 @@ import numpy as np
 
 
 def sensitivity(confusion):
-    """Calculates the sensitivity for each class
-    in a confussion matrix
-    """
-    classes, _ = confusion.shape
-    result = np.zeros(classes)
-
-    for class_ in range(classes):
-        result[class_] = np.divide(
-            confusion[class_][class_],
-            np.sum(confusion[class_])
-        )
-
-    return result
+    # Calculate true positives for each class
+    true_positives = np.diag(confusion)
+    
+    # Calculate false negatives for each class
+    false_negatives = np.sum(confusion, axis=1) - true_positives
+    
+    # Calculate sensitivity for each class
+    sensitivity_scores = true_positives / (true_positives + false_negatives)
+    
+    return sensitivity_scores
