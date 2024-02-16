@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create confusion"""
+"""confusion matrix"""
 import numpy as np
 
 
