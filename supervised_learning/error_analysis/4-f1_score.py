@@ -1,15 +1,27 @@
 #!/usr/bin/env python3
-"""F1 Score"""
+"""
+This module conatains a function that
+calculates the f1 score for
+each class in a confusion matrix"""
+
 import numpy as np
 sensitivity = __import__('1-sensitivity').sensitivity
 precision = __import__('2-precision').precision
 
 
 def f1_score(confusion):
-    """Calculates the F1 score of a confusion matrix
     """
-    sens_v = sensitivity(confusion)
-    prec_v = precision(confusion)
-
-    f1 = np.divide(2, np.power(sens_v, -1) + np.power(prec_v, -1))
+    confusion - (classes, classes) confusion matrix
+    """
+    # precisions = precision(confusion)
+    # sensitivitys = sensitivity(confusion)
+    # f1 = 2(precision * sensitivity) / (precision + sensitivity)
+    # return f1
+    classes = confusion.shape[0]
+    f1 = np.zeros(classes)
+    precisions = precision(confusion)
+    sensitivitys = sensitivity(confusion)
+    for i in range(classes):
+        f1[i] = 2 * (precisions[i] * sensitivitys[i]) / \
+            (precisions[i] + sensitivitys[i])
     return f1
