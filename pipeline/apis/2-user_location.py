@@ -20,7 +20,7 @@ def get_user_location(api_url):
         current_time = time.time()
         reset_in_seconds = reset_time - current_time
         reset_in_minutes = int(reset_in_seconds / 60)
-        return f"Reset in {reset_in_minutes} min"
+        return "Reset in {} min".format(reset_in_minutes)
     else:
         return "Unexpected error"
 
