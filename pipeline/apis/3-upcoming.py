@@ -15,11 +15,10 @@ if __name__ == '__main__':
     rocket_url = "https://api.spacexdata.com/v4/rockets/{}".format(rocket_id)
     rocket_name = requests.get(rocket_url).json()['name']
     lpad_id = launch['launchpad']
-    lpad_url = "https://api.spacexdata.com/v4/launchpads/{}".\
-        format(lpad_id)
+    lpad_url = "https://api.spacexdata.com/v4/launchpads/{}".format(lpad_id)
     lpad_req = requests.get(lpad_url).json()
-    lpad_name = lpad_req['name']
-    lpad_loc = lpad_req['locality']
+    lpad_name = lpad_req.get('name', 'Unknown Launchpad')
+    lpad_loc = lpad_req.get('locality', 'Unknown Locality')
 
     upcoming_launch = "{} ({}) {} - {} ({})".format(launch_name, date_l,
                                                     rocket_name, lpad_name,
