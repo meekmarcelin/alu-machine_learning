@@ -33,6 +33,7 @@ def get_user_location(api_url):
     else:
         return "Unexpected error"
 
+
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: python 2-user_location.py <API_URL>")
