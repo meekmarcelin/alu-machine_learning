@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+""" Script for getting user location"""
+import sys
+import requests
+import time
+
+
 def get_user_location(api_url):
     response = requests.get(api_url)
     if response.status_code == 200:
