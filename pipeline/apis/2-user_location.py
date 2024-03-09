@@ -6,6 +6,15 @@ import time
 
 
 def get_user_location(api_url):
+    """
+    Get the location of a user from the provided API URL.
+
+    Args:
+        api_url (str): The API URL of the user.
+
+    Returns:
+        str: The location of the user.
+    """
     response = requests.get(api_url)
     if response.status_code == 200:
         user_data = response.json()
