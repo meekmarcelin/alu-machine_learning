@@ -1,72 +1,80 @@
 #!/usr/bin/env python3
-
 """
-This script represents a Bayesian optimization on a
-noiseless 1D Gaussian process
+Bayesian optimization
 """
 
 import numpy as np
+from scipy.stats import norm
 GP = __import__('2-gp').GaussianProcess
 
 
 class BayesianOptimization:
     """
-    A class that represents a Bayesian optimization on a
-    noiseless 1D Gaussian process
+    Bayesian optimization on a noiseless 1D Gaussian process
     """
-    def __init__(self, f, X_init, Y_init, bounds, ac_samples,
-                 l=1, sigma_f=1, xsi=0.01, minimize=True):
+    def __init__(self, f, X_init, Y_init, bounds, ac_samples, l=1, sigma_f=1,
+                 xsi=0.01, minimize=True):
         """
-        Initializes Bayesian Optimization
+        init method for bayesian optimization
+        Args:
+            f: the black-box function to be optimized
+            X_init: numpy.ndarray of shape (t, 1) representing the inputs
+                    already sampled with the black-box function
+            Y_init: numpy.ndarray of shape (t, 1) representing the outputs
+                    of the black-box function for each input in X_init
+                    t: the number of initial samples
+            bounds: tuple of (min, max) representing the bounds of the space
+                    in which to look for the optimal point
+            ac_samples: the number of samples that should be analyzed during
+                        acquisition
+            l: the length parameter for the kernel
+            sigma_f: the standard deviation given to the output of the
+                     black-box function
+            xsi: the exploration-exploitation factor for acquisition
+            minimize: bool determining whether optimization should be performed
+                      for minimization (True) or maximization (False)
         """
+        # black-box function
         self.f = f
+
+        # Gaussian Process
         self.gp = GP(X_init, Y_init, l, sigma_f)
-        self.X_s = np.linspace(bounds[0], bounds[1], ac_samples).reshape(-1, 1)
+
+        # X_s all acquisition sample
+        X_s = np.linspace(bounds[0], bounds[1], num=ac_samples)
+        self.X_s = X_s.reshape(-1, 1)
+
+        # exploration-explotation
         self.xsi = xsi
+
+        # minimization versus maximization
         self.minimize = minimize
 
     def acquisition(self):
         """
-        Calculates the next best sample location
+        Next best sample location method
+        Returns:
         """
+        # source: http://krasserm.github.io/2018/03/21/bayesian-optimization/
         mu, sigma = self.gp.predict(self.X_s)
-        sigma = sigma.reshape(-1, 1)
-        with np.errstate(divide='warn'):
-            if self.minimize:
-                mu_sample_opt = np.min(self.gp.Y)
-                imp = mu_sample_opt - mu - self.xsi
-            else:
-                mu_sample_opt = np.max(self.gp.Y)
-                imp = mu - mu_sample_opt - self.xsi
-            Z = imp / sigma
-            ei = imp * self._cdf(Z) + sigma * self._pdf(Z)
-            ei[sigma == 0.0] = 0.0
-        return self.X_s[np.argmax(ei)], ei
 
-    def _cdf(self, Z):
-        """
-        Computes the cumulative distribution function (CDF) for standard normal distribution
-        """
-        return 0.5 * (1 + np.erf(Z / np.sqrt(2)))
-
-    def _pdf(self, Z):
-        """
-        Computes the probability density function (PDF) for standard normal distribution
-        """
-        return (1 / np.sqrt(2 * np.pi)) * np.exp(-0.5 * Z**2)
-
-    def optimize(self, iterations=100):
-        """
-        Optimizes the black-box function
-        """
-        X_all = []
-        for _ in range(iterations):
-            X_next, _ = self.acquisition()
-            Y_next = self.f(X_next)
-            self.gp.update(X_next, Y_next)
-            X_all.append(X_next)
-        if self.minimize:
-            idx = np.argmin(self.gp.Y)
+        if self.minimize is True:
+            Y_sample = np.min(self.gp.Y)
+            imp = Y_sample - mu - self.xsi
         else:
-            idx = np.argmax(self.gp.Y)
-        return self.gp.X[idx], self.gp.Y[idx]
+            Y_sample = np.max(self.gp.Y)
+            imp = mu - Y_sample - self.xsi
+
+        Z = np.zeros(sigma.shape[0])
+        for i in range(sigma.shape[0]):
+            # formula if σ(x)>0 : μ(x)−f(x+)−ξ / σ(x)
+            if sigma[i] > 0:
+                Z[i] = imp[i] / sigma[i]
+            # formula if σ(x)=0
+            else:
+                Z[i] = 0
+            ei = imp * norm.cdf(Z) + sigma * norm.pdf(Z)
+
+        X_next = self.X_s[np.argmax(ei)]
+
+        return X_next, ei
